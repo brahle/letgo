@@ -1,0 +1,19 @@
+<style>
+</style>
+<script langauge="JavaScript">
+    var eps = 1e-9;
+    function updateTimer() {
+        var vrijeme = parseFloat(document.getElementById("timer").innerHTML);
+        if (vrijeme <= eps) {
+            clearInterval(intervalId);
+            return;
+        }
+        vrijeme -= 0.1 + eps;
+        document.getElementById("timer").innerHTML = (vrijeme + eps).toFixed(1);
+    }
+    intervalId = setInterval("updateTimer()", 100);
+</script>
+<body>
+    <div id="timer">10</div>
+</body>
+
