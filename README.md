@@ -12,9 +12,9 @@ Contributing
 
 If you have any ideas you would like to see implemented, you can:
 
-    * Open an [issue](https://github.com/brahle/letgo/issues).
-    * [Fork](https://github.com/brahle/letgo/fork) the repo and send a
-      [pull request](https://github.com/brahle/letgo/pulls).
+* Open an [issue](https://github.com/brahle/letgo/issues).
+* [Fork](https://github.com/brahle/letgo/fork) the repo and send a
+  [pull request](https://github.com/brahle/letgo/pulls).
 
 License
 -------
@@ -54,4 +54,4 @@ Authors
 
 List of authors, in alphabetical order:
 
-    * Bruno Rahle ([email](mailto:brahle+letgo@gmail.com))
+* Bruno Rahle ([email](mailto:brahle+letgo@gmail.com))
