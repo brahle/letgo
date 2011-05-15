@@ -1,11 +1,11 @@
-function setCSS(tabId) {
+function toggleHide(tabId) {
   chrome.tabs.sendRequest(tabId, {type: "switch"}, null);
 }
 
 var remainingTicks = {};
 var tickLengthInMillis = 100;
 var numberOfTicks = 300;
-var startOffsetMillis = 1000;
+var startOffsetMillis = 500;
 var currentTab = 0;
 
 function updateText() {
@@ -19,22 +19,25 @@ function updateText() {
   chrome.browserAction.setBadgeText({text:secsLeft+"s"});
 }
 
-function check(tabId) {
+function check() {
   updateText();
-  if (remainingTicks[tabId] <= 0) {
-    remainingTicks[tabId] = 0;
-    setCSS(tabId);
+
+  if( remainingTicks[currentTab] === undefined) {
+    setTimeout(function(){check();}, tickLengthInMillis);
     return;
   }
 
-  if (currentTab == tabId) {
-    if (remainingTicks[tabId] !== undefined) {
-      remainingTicks[tabId] -= 1;
-    }
+  if (remainingTicks[currentTab] <= 0 ) {
+    delete remainingTicks[currentTab];
+    toggleHide(currentTab);
+    setTimeout(function(){check();}, tickLengthInMillis);
+    return;
   }
-  
-  setTimeout(function(){check(tabId);}, tickLengthInMillis);
+
+  remainingTicks[currentTab] -= 1;
+  setTimeout(function(){check();}, tickLengthInMillis);
 }
+check();
 
 function blockTab(tabId) {
   // TODO (brahle): implement this
@@ -50,8 +53,7 @@ chrome.tabs.onUpdated.addListener(
       return;
     }
     remainingTicks[tabId] = numberOfTicks;
-    setTimeout(function(){setCSS(tabId);}, startOffsetMillis);
-    check(tabId);
+    setTimeout(function(){toggleHide(tabId);}, startOffsetMillis);
   }
 );
 
