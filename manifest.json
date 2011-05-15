@@ -3,8 +3,7 @@
     "version": "0.1",
     "description": "Makes you wait 30 seconds before the forbidden page opens.",
     "browser_action": {
-        "default_icon": "icon.png",
-        "popup": "popup.html"
+        "default_icon": "icon.png"
     },
     "content_scripts": [
         {
